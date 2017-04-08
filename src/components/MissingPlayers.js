@@ -19,6 +19,15 @@ class MissingPlayers extends Component {
     return (
       <div className="App-missingPlayers">
         <div>
+          <div className="baseline">
+            <h1>Zung-Jung scorer</h1>
+          </div>
+          <div className="logo">
+            <span>🀀</span>
+            <span>🀁</span>
+            <span>🀂</span>
+            <span>🀃</span>
+          </div>
           <ul>
             {players.map(player => <li><span>{player.name}</span> <button onClick={handleRemovePlayer.bind(null, player.name)}>x</button></li>)}
           </ul>
@@ -29,12 +38,12 @@ class MissingPlayers extends Component {
             handleAddPlayer(this.state.name)
             this.resetName();
           }}>
-            <label>Ajouter un joueur</label>
+            <label>Add player</label>
             <input type="text" value={this.state.name} onChange={e => this.updateName(e.target.value)}/>
-            <button type="submit">add</button>
+            <button type="submit">Add</button>
           </form>
           :
-          <button onClick={setReady}>Go</button>
+          <button onClick={setReady}>Start</button>
           }
         </div>
       </div>

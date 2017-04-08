@@ -3,14 +3,14 @@ import React from 'react';
 const History = ({ roundHistory, handlePersistState, handleResetState }) => {
   return (
     <div className="history">
-      <h1 className="title title--underline">Historique</h1>
+      <h1 className="title title--underline">History</h1>
         <table>
           <thead>
             <tr>
               <th>round</th>
               <th>winner</th>
               <th>score</th>
-              <th>par</th>
+              <th>by</th>
             </tr>
           </thead>
           <tbody>
