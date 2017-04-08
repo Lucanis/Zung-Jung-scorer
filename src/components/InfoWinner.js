@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InfoWinner = ({ players, winner, winBy, score, round, discardFrom, handleWin, handleWinBy, handleDiscardFrom, handleScore, handleEndRound }) => {
+const InfoWinner = ({ players, winner, winBy, score, round, discardFrom, handleWin, handleWinBy, handleDiscardFrom, handleScore, handleEndRound, handleClose }) => {
   return (
     <div>
       <h1 className="title title--underline">Ajout Résultat - round {round}</h1>
@@ -37,6 +37,7 @@ const InfoWinner = ({ players, winner, winBy, score, round, discardFrom, handleW
       </div>
       <div>
         <button className="button-add" onClick={handleEndRound} disabled={!(winner && winBy && score > 0)}>Valider</button>
+        <button className="hide-scorer-button" onClick={handleClose}>close</button>
       </div>
     </div>
   )

@@ -11,6 +11,7 @@ import MissingPlayers from './components/MissingPlayers'
 
 const initialState = {
   ready: false,
+  activeScorer: false,
   round: {
     winner: undefined,
     winBy: undefined,
@@ -35,13 +36,11 @@ class App extends Component {
       players: [].concat(this.state.players.filter(el => el.name !== player))
     })
   }
-
   setReady = () => {
     this.setState({
       ready: true,
     })
   }
-
   getSavedState = () => {
     return JSON.parse(localStorage.getItem('scorer') || JSON.stringify(this.state));
   }
@@ -57,7 +56,9 @@ class App extends Component {
   }
   handleEndRound = () => {
     const results = finishRound(this.state.players, this.state.round);
+    document.body.classList.toggle('no-overflow')
     this.setState({
+      activeScorer: false,
       round: {
         winner: undefined,
         winBy: undefined,
@@ -108,12 +109,20 @@ class App extends Component {
     })
   }
 
+  toggleScorer = (val) => {
+    document.body.classList.toggle('no-overflow')
+    this.setState({
+      activeScorer: !this.state.activeScorer
+    })
+  }
+
   render() {
-    const { round, players, roundHistory, ready } = this.state;
+    const { round, players, roundHistory, ready, activeScorer } = this.state;
     return (
       <div className="App">
         {ready && players.length === 4 ?
           <div className="App-scorer">
+            <button onClick={this.toggleScorer} className="display-scorer-button">add Score</button>
             <div className="left-col">
               <Scoring players={players} PlayerComponent={Player} />
               <History
@@ -122,7 +131,7 @@ class App extends Component {
                 handleResetState={this.handleResetState}
               />
             </div>
-            <div className="right-col">
+            <div className={`right-col ${activeScorer ? 'active' : ''}`}>
                <InfoWinner
                  players={players}
                  handleWin={this.setWinner}
@@ -130,6 +139,7 @@ class App extends Component {
                  handleDiscardFrom={this.setDiscardFrom}
                  handleScore={this.setScore}
                  handleEndRound={this.handleEndRound}
+                 handleClose={this.toggleScorer}
                  {...round}
                />
             </div>

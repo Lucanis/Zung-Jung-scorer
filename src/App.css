@@ -15,6 +15,9 @@ body{
   min-height: 100vh;
   color: #659b5b;
 }
+body.no-overflow{
+  overflow: hidden;
+}
 
 button{
   overflow: hidden;
@@ -68,8 +71,11 @@ input[type="number"] {
 
 .App-scorer{
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
+
+
 .App-missingPlayers{
   display: flex;
   min-height: 100vh;
@@ -82,13 +88,25 @@ input[type="number"] {
   padding: 10px;
 }
 .App-missingPlayers > div {
-  height: 240px;
+  height: 280px;
   width: 305px;
   display: flex;
   flex-direction: column;
 }
 .App-missingPlayers form {
   margin-top: auto;
+}
+.App-missingPlayers form label{
+  text-align: center;
+  color: #fff;
+  margin-bottom: 15px;
+}
+.App-missingPlayers form button{
+  margin-top: 15px;
+}
+.App-missingPlayers form > * {
+  display: block;
+  width: 100%;
 }
 .App-missingPlayers ul {
   list-style: none;
@@ -115,19 +133,36 @@ input[type="number"] {
   min-width: inherit;
 }
 
-
 .left-col, .right-col {
   flex: 1 1 50%;
-  padding: 30px;
+  padding: 15px ;
 }
 .left-col{
   display: flex;
   flex-direction: column;
 }
 .right-col{
-    flex: 1 1 30%;
-    background: #74C365;
-    color: #fff;
+  flex: 1 1 30%;
+  background: #74C365;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  min-height: 100vh;
+  width: 100vw;
+  transform: translateY(-150%);
+  overflow-y: scroll;
+}
+.right-col.active{
+    transform: translateY(0);
+}
+.right-col button {
+  width: 100%;
+    margin-bottom: 15px;
+}
+.right-col button + button {
+  margin-left: 0;
 }
 .right-col button.active{
   background: #fff;
@@ -143,6 +178,7 @@ input[type="number"] {
 }
 .history-buttons{
   margin-top: auto;
+  padding-top: 15px;
 }
 
 .title{
@@ -179,9 +215,14 @@ input[type="number"] {
   text-transform: uppercase;
 }
 
+
+
 table{
   border-collapse: collapse;
   width: 100%;
+}
+table > thead {
+  display: none;
 }
 table > thead > tr > th {
   background: #74C365;
@@ -194,4 +235,35 @@ table > thead > tr > th {
 table > tbody > tr > td {
   border:1px solid #659b5b;
   padding: 15px;
+}
+
+
+@media(min-width: 768px) {
+  .no-overflow{
+    overflow: auto;
+  }
+  .App-scorer{
+    flex-direction: row;
+  }
+  .left-col, .right-col {
+    padding: 30px;
+  }
+  .right-col{
+    position: static;
+    transform: translateY(0);
+  }
+  .right-col button{
+    width: auto;
+    border-right: 3px solid #74C365;
+  }
+  .right-col button + button{
+    margin-bottom: 0;
+  }
+  .display-scorer-button, .hide-scorer-button{
+    display: none;
+  }
+  table > thead {
+    display: table-header-group;
+  }
+
 }
