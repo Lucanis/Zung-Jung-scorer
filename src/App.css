@@ -13,12 +13,12 @@ body{
   line-height: 1;
   background:	#fff;
   min-height: 100vh;
-  color: #0F1B07;
+  color: #659b5b;
 }
 
 button{
   overflow: hidden;
-  background: #0F1B07;
+  background: #659b5b;
   margin: 0;
   padding: 12px 12px;
   cursor: pointer;
@@ -59,7 +59,7 @@ button + button {
 }
 
 input[type="number"] {
-  border: 1px solid #0F1B07;
+  border: 1px solid #659b5b;
   padding: 10px;
 }
 
@@ -100,10 +100,10 @@ input[type="number"] {
   display: flex;
   justify-content:space-between;
   align-items: center;
-  background: #0F1B07;
+  background: #659b5b;
   color: #fff;
   font-weight: bold;
-  border: 1px solid #0F1B07;
+  border: 1px solid #659b5b;
   margin-bottom: 5px;
 }
 .App-missingPlayers ul li span{
@@ -125,8 +125,13 @@ input[type="number"] {
   flex-direction: column;
 }
 .right-col{
-    flex: 1 1 25%;
-    border-left: 1px solid #0F1B07;
+    flex: 1 1 30%;
+    background: #74C365;
+    color: #fff;
+}
+.right-col button.active{
+  background: #fff;
+  color: #74C365;
 }
 
 .scoring, .history{
@@ -145,14 +150,14 @@ input[type="number"] {
 }
 
 .title--underline{
-  border-bottom: 1px solid #0F1B07;
+  border-bottom: 1px solid #659b5b;
 }
 
 .Player{
   display: flex;
   font-weight: bold;
   margin-bottom: 10px;
-  border: 1px solid #0F1B07;
+  border: 1px solid #659b5b;
 }
 .Player-name{
     padding: 15px;
@@ -163,12 +168,13 @@ input[type="number"] {
   padding: 15px;
   width: 70px;
   text-align: center;
-  border-right: 1px solid #0F1B07;
+  border-right: 1px solid #659b5b;
 }
 
 .button-add{
   margin-top: 30px;
-	background: #74C365;
+	background: #fff;
+  color: #74C365;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -181,11 +187,11 @@ table > thead > tr > th {
   background: #74C365;
   color: #fff;
   padding: 15px;
-  border: 1px solid #0F1B07;
+  border: 1px solid #659b5b;
 
   text-align: left;
 }
 table > tbody > tr > td {
-  border:1px solid #0F1B07;
+  border:1px solid #659b5b;
   padding: 15px;
 }
