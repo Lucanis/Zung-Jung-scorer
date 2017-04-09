@@ -38,7 +38,7 @@ class MissingPlayers extends Component {
             handleAddPlayer(this.state.name)
             this.resetName();
           }}>
-            <label>Add player</label>
+            <label>Add { 4 - players.length} players</label>
             <input type="text" value={this.state.name} onChange={e => this.updateName(e.target.value)}/>
             <button type="submit">Add</button>
           </form>

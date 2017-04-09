@@ -146,7 +146,7 @@ input[type="number"] {
   min-width: inherit;
 }
 
-.left-col, .right-col {
+.left-col, .right-col{
   flex: 1 1 50%;
   padding: 15px ;
 }
@@ -155,17 +155,23 @@ input[type="number"] {
   flex-direction: column;
 }
 .right-col{
-  flex: 1 1 30%;
+    flex: 1 1 20%;
   background: #74C365;
   color: #fff;
   position: fixed;
   bottom: 0;
   left: 0;
   height: 100%;
+  max-height: 100vh;
   min-height: 100vh;
   width: 100vw;
   transform: translateY(-150%);
+  transition: transform 0.25s;
   overflow-y: scroll;
+  padding-bottom: 50px;
+}
+.right-col::-webkit-scrollbar {
+    display: none;
 }
 .right-col.active{
     transform: translateY(0);
@@ -180,6 +186,10 @@ input[type="number"] {
 .right-col button.active{
   background: #fff;
   color: #74C365;
+}
+
+.scoring{
+  margin-bottom: 50px;
 }
 
 .scoring, .history{
@@ -206,7 +216,7 @@ input[type="number"] {
   display: flex;
   font-weight: bold;
   margin-bottom: 10px;
-  border: 1px solid #659b5b;
+  border: 1px solid #fff;
 }
 .Player-name{
     padding: 15px;
@@ -217,7 +227,7 @@ input[type="number"] {
   padding: 15px;
   width: 70px;
   text-align: center;
-  border-right: 1px solid #659b5b;
+  border-right: 1px solid #fff;
 }
 
 .button-add{
@@ -227,7 +237,13 @@ input[type="number"] {
   font-weight: bold;
   text-transform: uppercase;
 }
-
+.display-pattern-button{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 65%;
+  z-index: 2;
+}
 
 
 table{
@@ -250,6 +266,213 @@ table > tbody > tr > td {
   padding: 15px;
 }
 
+.patterns-col{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 65%;
+  background: #fff;
+  padding: 20px 15px 65px;
+  max-height: 100vh;
+  overflow: auto;
+  transform: translateX(-150%);
+  transition: transform 0.25s;
+  z-index: 1;
+}
+.patterns-col::-webkit-scrollbar {
+    display: none;
+}
+.patterns-col.active{
+  transform: translateX(0);
+}
+
+.Pattern{
+  display: flex;
+}
+.Pattern-tiles{
+  display: flex;
+  width: 60%;
+  padding: 5px 0;
+  margin-right: 30px;
+  position: relative;
+}
+
+.Pattern-score{
+  width: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #74C365;
+}
+.Pattern-name{
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.Pattern-label{
+  color: #444;
+  font-size: 13px;
+  text-transform: none;
+  margin-top: 2px;
+}
+
+.Patterns-group {
+  position: relative;
+}
+
+.Patterns-group:before,
+.Patterns-group:after {
+  width: 20px;
+  height: 50%;
+  position: absolute;
+  left: calc(60% + 40px);
+  content: "";
+}
+
+.Patterns-group:before {
+  top: 0px;
+  background: linear-gradient(to right top, red 50%, transparent 50%);
+  background-size: 100% 150px, 100% 150px;
+  background-position: 0 0, 0 bottom;
+}
+
+.Patterns-group:after {
+  top: 50%;
+  background: linear-gradient(to right bottom, red 50%, transparent 50%);
+  background-size: 100% 150px, 100% 150px;
+  background-position: 0 0, 0 bottom;
+  background-repeat: no-repeat;
+}
+
+.Patterns-group--concealed .Pattern-tiles{
+  background: #c62f48;
+}
+.Patterns-group--concealed .Pattern-name{
+  color: #c62f48;
+}
+.Patterns-group--concealed:before {
+    background: linear-gradient(to right top, #c62f48 50%, transparent 50%);
+}
+.Patterns-group--concealed:after {
+    background: linear-gradient(to right bottom, #c62f48 50%, transparent 50%);
+}
+
+.Patterns-group--no-combo .Pattern-tiles{
+  background: #0fa753;
+}
+.Patterns-group--no-combo .Pattern-name{
+  color: #0fa753;
+}
+.Patterns-group--no-combo:before {
+    background: linear-gradient(to right top, #0fa753 50%, transparent 50%);
+}
+.Patterns-group--no-combo:after {
+    background: linear-gradient(to right bottom, #0fa753 50%, transparent 50%);
+}
+
+div[class*="Pattern--"] .Pattern-tiles:before{
+  content: '';
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 0;
+}
+.Pattern--run .Pattern-score{
+  background-color: #2ba1e4;
+}
+.Pattern--run .Pattern-tiles:before{
+
+  background: linear-gradient(to right, #2ba1e4 0%, transparent 100%);
+}
+
+.Pattern--tri .Pattern-score{
+    background-color: #b83997;
+}
+.Pattern--tri .Pattern-tiles:before{
+  background: linear-gradient(to right, #b83997 0%, transparent 100%);
+}
+
+.Pattern--quad .Pattern-score{
+    background-color: #792390;
+}
+.Pattern--quad .Pattern-tiles:before{
+  background: linear-gradient(to right, #792390 0%, transparent 100%);
+}
+
+.Pattern--1-9-honors .Pattern-score{
+  background-color: #94bd40;
+}
+.Pattern--1-9-honors .Pattern-tiles:before{
+  background: linear-gradient(to right, #94bd40 0%, transparent 100%);
+}
+
+.Pattern--suit .Pattern-score{
+    background-color: #fcd445;
+}
+.Pattern--suit .Pattern-tiles:before{
+  background: linear-gradient(to right, #fcd445 0%, transparent 100%);
+}
+
+
+.Pattern--melding .Pattern-score{
+    background-color: #3a5d92;
+}
+.Pattern--melding .Pattern-tiles:before{
+  background: linear-gradient(to right, #3a5d92 0%, transparent 100%);
+}
+
+.Pattern--irregular .Pattern-score{
+    background-color: #de8a2c;
+}
+.Pattern--irregular .Pattern-tiles:before{
+  background: linear-gradient(to right, #de8a2c 0%, transparent 100%);
+}
+
+.Tile{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1
+}
+.Tile-dims{
+  width: 100%;
+  height: 40px;
+}
+
+@media(max-width: 768px) {
+  .patterns-col{
+    width: 100%;
+  }
+  .Patterns-group:before, .Patterns-group:after{
+    content: none;
+  }
+  .Pattern{
+    flex-direction: column;
+    margin-bottom: 35px;
+  }
+  .Pattern-tiles{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .Pattern-name, .Pattern-label{
+    width: 100%;
+    padding: 0;
+  }
+  .display-pattern-button{
+    width: 100%;
+  }
+}
 
 @media(min-width: 768px) {
   .no-overflow{

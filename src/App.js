@@ -3,11 +3,12 @@ import 'normalize.css';
 import './App.css';
 
 import finishRound from './scorer';
-import Player from './components/Player'
-import InfoWinner from './components/InfoWinner'
-import Scoring from './components/Scoring'
-import History from './components/History'
-import MissingPlayers from './components/MissingPlayers'
+import Player from './components/Player';
+import InfoWinner from './components/InfoWinner';
+import Scoring from './components/Scoring';
+import History from './components/History';
+import MissingPlayers from './components/MissingPlayers';
+import Patterns from './components/Patterns';
 
 const initialState = {
   ready: false,
@@ -25,7 +26,9 @@ const initialState = {
 
 class App extends Component {
   state = initialState;
-
+  componentDidMount(){
+    this.setState(this.getSavedState)
+  }
   addPlayer = player => {
     this.setState({
       players: [].concat(this.state.players, { name: player, score: 0 })
@@ -44,9 +47,6 @@ class App extends Component {
   getSavedState = () => {
     return JSON.parse(localStorage.getItem('scorer') || JSON.stringify(this.state));
   }
-  componentDidMount(){
-    this.setState(this.getSavedState)
-  }
   handlePersistState = () => {
     localStorage.setItem('scorer', JSON.stringify(this.state));
   }
@@ -59,6 +59,7 @@ class App extends Component {
     document.body.classList.toggle('no-overflow')
     this.setState({
       activeScorer: false,
+      activePattern: false,
       round: {
         winner: undefined,
         winBy: undefined,
@@ -108,23 +109,30 @@ class App extends Component {
       }
     })
   }
-
   toggleScorer = (val) => {
     document.body.classList.toggle('no-overflow')
     this.setState({
       activeScorer: !this.state.activeScorer
     })
   }
+  togglePattern = (val) => {
+    this.setState({
+      activePattern: !this.state.activePattern
+    })
+  }
+
 
   render() {
-    const { round, players, roundHistory, ready, activeScorer } = this.state;
+    const { round, players, roundHistory, ready, activeScorer, activePattern } = this.state;
     return (
       <div className="App">
         {ready && players.length === 4 ?
           <div className="App-scorer">
             <button onClick={this.toggleScorer} className="display-scorer-button">add Score</button>
+            <div className={`patterns-col ${activePattern ? 'active' : ''}`}>
+              <Patterns closePattern={this.togglePattern}/>
+            </div>
             <div className="left-col">
-              <Scoring players={players} PlayerComponent={Player} />
               <History
                 roundHistory={roundHistory}
                 handlePersistState={this.handlePersistState}
@@ -132,6 +140,7 @@ class App extends Component {
               />
             </div>
             <div className={`right-col ${activeScorer ? 'active' : ''}`}>
+               <Scoring players={players} PlayerComponent={Player} />
                <InfoWinner
                  players={players}
                  handleWin={this.setWinner}
@@ -143,6 +152,7 @@ class App extends Component {
                  {...round}
                />
             </div>
+            <button onClick={this.togglePattern} className="display-pattern-button">{activePattern ? 'close Patterns' :'view Patterns'}</button>
           </div>
         :
           <MissingPlayers
