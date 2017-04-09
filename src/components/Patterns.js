@@ -8,6 +8,36 @@ class Patterns extends Component {
   render() {
     return (
       <div>
+        <div className="legend-patterns">
+          <div className="legend-pattern legend-pattern--run">
+            <div className="legend-pattern-block"></div>
+            <div className="legend-pattern-label">Run-based</div>
+          </div>
+          <div className="legend-pattern legend-pattern--tri">
+            <div className="legend-pattern-block"></div>
+            <div className="legend-pattern-label">Tri-based</div>
+          </div>
+          <div className="legend-pattern legend-pattern--quad">
+            <div className="legend-pattern-block"></div>
+            <div className="legend-pattern-label">Quad-based</div>
+          </div>
+          <div className="legend-pattern legend-pattern--1-9-honors">
+            <div className="legend-pattern-block"></div>
+            <div className="legend-pattern-label">1/9/Honors-based</div>
+          </div>
+          <div className="legend-pattern legend-pattern--suit">
+            <div className="legend-pattern-block"></div>
+            <div className="legend-pattern-label">Suit-based</div>
+          </div>
+          <div className="legend-pattern legend-pattern--melding">
+            <div className="legend-pattern-block"></div>
+            <div className="legend-pattern-label">Melding-based</div>
+          </div>
+          <div className="legend-pattern legend-pattern--irregular">
+            <div className="legend-pattern-block"></div>
+            <div className="legend-pattern-label">Irregular</div>
+          </div>
+        </div>
         <Pattern
           tiles={['1-sou', '2-sou', '3-sou', '4-man', '5-man', '6-man', '3-pin', '4-pin', '5-pin', '7-man', '8-man', '9-man', 'Back', 'Back']}
           score="5"

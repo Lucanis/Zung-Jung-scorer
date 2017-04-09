@@ -450,6 +450,48 @@ div[class*="Pattern--"] .Pattern-tiles:before{
   height: 40px;
 }
 
+.legend-patterns{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.legend-pattern{
+  display: flex;
+  align-items: center;
+    margin-bottom: 15px;
+}
+.legend-pattern-block{
+  width: 30px;
+  height: 20px;
+  background: red;
+}
+.legend-pattern-label{
+  color: #222;
+  padding-left: 10px;
+}
+
+.legend-pattern--run .legend-pattern-block {
+  background-color: #2ba1e4;
+}
+.legend-pattern--tri .legend-pattern-block {
+  background-color: #b83997;
+}
+.legend-pattern--quad .legend-pattern-block {
+  background-color: #792390;
+}
+.legend-pattern--1-9-honors .legend-pattern-block {
+  background-color: #94bd40;
+}
+.legend-pattern--suit .legend-pattern-block {
+  background-color: #f7d545;
+}
+.legend-pattern--melding .legend-pattern-block {
+  background-color: #3a5d92;
+}
+.legend-pattern--irregular .legend-pattern-block {
+  background-color: #de8a2c;
+}
+
 @media(max-width: 768px) {
   .patterns-col{
     width: 100%;
