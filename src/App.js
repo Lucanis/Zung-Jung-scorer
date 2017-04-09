@@ -13,6 +13,7 @@ import Patterns from './components/Patterns';
 const initialState = {
   ready: false,
   activeScorer: false,
+  activePattern: false,
   round: {
     winner: undefined,
     winBy: undefined,
@@ -58,8 +59,6 @@ class App extends Component {
     const results = finishRound(this.state.players, this.state.round);
     document.body.classList.toggle('no-overflow')
     this.setState({
-      activeScorer: false,
-      activePattern: false,
       round: {
         winner: undefined,
         winBy: undefined,
